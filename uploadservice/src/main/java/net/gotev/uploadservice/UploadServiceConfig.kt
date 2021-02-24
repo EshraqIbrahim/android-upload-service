@@ -162,7 +162,7 @@ object UploadServiceConfig {
      * The service is idle when is running, but no tasks are running.
      */
     @JvmStatic
-    var idleTimeoutSeconds = 10
+    var idleTimeoutSeconds = 30
         set(value) {
             require(value >= 1) { "Idle timeout min allowable value is 1. It cannot be $value" }
             field = value
