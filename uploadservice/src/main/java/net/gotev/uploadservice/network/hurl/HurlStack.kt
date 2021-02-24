@@ -9,7 +9,7 @@ class HurlStack @JvmOverloads constructor(
     private val userAgent: String = UploadServiceConfig.defaultUserAgent,
     private val followRedirects: Boolean = true,
     private val useCaches: Boolean = false,
-    private val connectTimeoutMillis: Int = 15000,
+    private val connectTimeoutMillis: Int = 1000,
     private val readTimeoutMillis: Int = 30000
 ) : HttpStack {
 
