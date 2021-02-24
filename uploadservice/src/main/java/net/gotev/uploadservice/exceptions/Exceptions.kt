@@ -1,6 +1,7 @@
 package net.gotev.uploadservice.exceptions
 
 import net.gotev.uploadservice.UploadThrowable
+import java.lang.Exception
 
-class UserCancelledUploadException(httpMethod: String) : UploadThrowable(message = "User cancelled upload", httpMethod = httpMethod)
-class UploadError(httpMethod: String) : UploadThrowable(message = "Upload error", httpMethod = httpMethod)
+class UserCancelledUploadException(httpMethod: String, exception: Exception? = null) : UploadThrowable(message = "User cancelled upload", httpMethod = httpMethod, exception)
+class UploadError(httpMethod: String, exception: Exception? = null) : UploadThrowable(message = "Upload error", httpMethod = httpMethod, exception = exception)

@@ -143,12 +143,12 @@ abstract class UploadTask : Runnable {
                 resetUploadedBytes()
                 upload(UploadServiceConfig.httpStack)
                 break
-            } catch (exc: Throwable) {
+            } catch (exc: Exception) {
                 if (!shouldContinue) {
                     UploadServiceLogger.error(TAG, params.id, exc) { "error while uploading but user requested cancellation." }
                     break
                 } else if (attempts >= params.maxRetries) {
-                    onError(UploadThrowable(message = "", httpMethod = params.httpMethod))
+                    onError(UploadThrowable(message = "", httpMethod = params.httpMethod, exception = exc))
                 } else {
                     UploadServiceLogger.error(TAG, params.id, exc) { "error on attempt ${attempts + 1}. Waiting ${errorDelay}s before next attempt." }
 

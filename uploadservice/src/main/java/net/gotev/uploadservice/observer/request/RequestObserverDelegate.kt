@@ -30,7 +30,7 @@ interface RequestObserverDelegate {
      * @param uploadInfo upload status information
      * @param exception exception that caused the error
      */
-    fun onError(context: Context, uploadInfo: UploadInfo, exception: UploadThrowable)
+    fun onError(context: Context, uploadInfo: UploadInfo, uploadThrowable: UploadThrowable)
 
     /**
      * Called when the upload is completed wither with success or error.
