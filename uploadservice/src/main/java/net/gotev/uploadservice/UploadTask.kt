@@ -148,7 +148,7 @@ abstract class UploadTask : Runnable {
                     UploadServiceLogger.error(TAG, params.id, exc) { "error while uploading but user requested cancellation." }
                     break
                 } else if (attempts >= params.maxRetries) {
-                    onError(UploadThrowable(message = "", httpMethod = params.httpMethod, exception = exc))
+                    onError(UploadThrowable(message = if (exc == null) "Server error" else exc.toString(), httpMethod = params.httpMethod, exception = exc))
                 } else {
                     UploadServiceLogger.error(TAG, params.id, exc) { "error on attempt ${attempts + 1}. Waiting ${errorDelay}s before next attempt." }
 
@@ -264,7 +264,7 @@ abstract class UploadTask : Runnable {
      * of [UploadTask.upload]
      */
     private fun onError(exception: UploadThrowable) {
-        UploadServiceLogger.error(TAG, params.id, exception) { "error" }
+        UploadServiceLogger.error(TAG, params.id, exception) { "error: ${exception.message}" }
         uploadInfo.let {
             doForEachObserver { onError(it, notificationId, notificationConfig, exception) }
             doForEachObserver { onCompleted(it, notificationId, notificationConfig) }
