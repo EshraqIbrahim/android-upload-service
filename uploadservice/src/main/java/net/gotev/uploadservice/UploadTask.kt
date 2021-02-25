@@ -234,7 +234,7 @@ abstract class UploadTask : Runnable {
                         uploadInfo,
                         notificationId,
                         notificationConfig,
-                        UploadError(params.httpMethod)
+                        UploadError(response, params.httpMethod)
                 )
             }
         }
