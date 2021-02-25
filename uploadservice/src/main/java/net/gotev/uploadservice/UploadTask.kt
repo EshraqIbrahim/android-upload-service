@@ -264,7 +264,7 @@ abstract class UploadTask : Runnable {
      * of [UploadTask.upload]
      */
     private fun onError(exception: UploadThrowable) {
-        UploadServiceLogger.error(TAG, params.id, exception) { exception.message }
+        UploadServiceLogger.error(TAG, params.id, exception) { "error: ${exception.message}" }
         uploadInfo.let {
             doForEachObserver { onError(it, notificationId, notificationConfig, exception) }
             doForEachObserver { onCompleted(it, notificationId, notificationConfig) }
